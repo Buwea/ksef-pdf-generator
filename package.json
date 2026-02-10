@@ -32,7 +32,8 @@
     "LICENSE"
   ],
   "publishConfig": {
-    "registry": "https://npm.buwea.pl/"
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
   },
   "keywords": [],
   "author": "",
