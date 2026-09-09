@@ -1,7 +1,7 @@
 import FormatTyp from '@shared/enums/common.enum';
 import i18n from 'i18next';
 import { Content, ContentQr } from 'pdfmake/interfaces';
-import { version } from '../../../../package.json';
+import { version } from '../../../../package.json' with { type: 'json' };
 import {
   createHeader,
   createLabelText,
