@@ -1,10 +1,27 @@
+import { generateStyle, getTable } from '@shared/PDF-functions';
+import { Position } from '@shared/enums/common.enum';
+import { SectionType } from '@shared/enums/pef-invoice.enum';
+import i18n from 'i18next';
+import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Content, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { generateAccountingParty } from './generators/PEF/AccountingParty';
-import { generateDelivery } from './generators/PEF/Delivery';
-import { generatePayeeParty } from './generators/PEF/PayeeParty';
-import { generateFooter } from './generators/PEF/Steeper';
-import { generateTaxRepresentativeParty } from './generators/PEF/TaxRepresentativeParty';
+import { generateAccountReckoning } from './generators/PEF/AccountReckoning';
+import { generateAccountingParty } from './generators/PEF/AccountingParty.js';
+import { generateAllowanceCharge } from './generators/PEF/AllowanceCharge';
+import { generateDelivery } from './generators/PEF/Delivery.js';
+import { generateDiffSummary } from './generators/PEF/DiffSummary';
+import { generateInvoiceDescription } from './generators/PEF/InvoiceDescription.js';
+import { generateInvoiceHeader } from './generators/PEF/InvoiceHeader.js';
+import { generateInvoiceLine } from './generators/PEF/InvoiceLine.js';
+import { generateLegalMonetaryTotal } from './generators/PEF/LegalMonetaryTotal.js';
+import { generatePayeeParty } from './generators/PEF/PayeeParty.js';
+import { generatePayment } from './generators/PEF/Payment.js';
+import { generateReceiverParty } from './generators/PEF/ReceiverParty.js';
+import { generateFooter } from './generators/PEF/Steeper.js';
+import { generateTaxRepresentativeParty } from './generators/PEF/TaxRepresentativeParty.js';
+import { generateTaxTotal } from './generators/PEF/TaxTotal.js';
+import { AdditionalDataTypes } from './types/common.types';
+import { PEFCorrectiveInvoice } from './types/pef-invoice-corrective.types';
 import {
   getExtensionFour,
   getExtensionOne,
@@ -12,23 +29,6 @@ import {
   getUBLExtensionArray,
   PEFType,
 } from './types/pef.types';
-import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake';
-import i18n from 'i18next';
-import { AdditionalDataTypes } from './types/common.types';
-import { generateStyle, getTable } from '@shared/PDF-functions';
-import { Position } from '@shared/enums/common.enum';
-import { generateInvoiceHeader } from './generators/PEF/InvoiceHeader';
-import { generateReceiverParty } from './generators/PEF/ReceiverParty';
-import { generateInvoiceDescription } from './generators/PEF/InvoiceDescription';
-import { generateTaxTotal } from './generators/PEF/TaxTotal';
-import { generateAllowanceCharge } from './generators/PEF/AllowanceCharge';
-import { PEFCorrectiveInvoice } from './types/pef-invoice-corrective.types';
-import { generateDiffSummary } from './generators/PEF/DiffSummary';
-import { generatePayment } from './generators/PEF/Payment';
-import { generateLegalMonetaryTotal } from './generators/PEF/LegalMonetaryTotal';
-import { generateInvoiceLine } from './generators/PEF/InvoiceLine';
-import { generateAccountReckoning } from './generators/PEF/AccountReckoning';
-import { SectionType } from '@shared/enums/pef-invoice.enum';
 
 pdfMake.addVirtualFileSystem(pdfFonts);
 

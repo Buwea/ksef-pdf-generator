@@ -1,17 +1,17 @@
-import { Content } from 'pdfmake/interfaces';
 import i18n from 'i18next';
+import { Content } from 'pdfmake/interfaces';
 
-import { generateColumns, getTable, getText } from '@shared/PDF-functions';
+import { generateColumns, getTable, getText } from '../../../shared/PDF-functions.js';
 import {
   borderedBox,
   createInlineLabelValue,
   createPefHeader,
   createPEFSectionTitle,
   createPEFSubHeader,
-} from '@shared/functions-pef';
-import { createAddress } from './shared/address';
-import { PayeePartyPartyTaxScheme, PEFBasicInvoice } from '../../types/pef-invoice.types';
+} from '../../../shared/functions-pef.js';
 import { PEFCorrectiveInvoice } from '../../types/pef-invoice-corrective.types';
+import { PayeePartyPartyTaxScheme, PEFBasicInvoice } from '../../types/pef-invoice.types';
+import { createAddress } from './shared/address.js';
 
 export function generateTaxRepresentativeParty(invoice: PEFBasicInvoice | PEFCorrectiveInvoice): Content[] {
   const result: Content[] = [];

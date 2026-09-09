@@ -1,10 +1,10 @@
-import { getTable, getText, hasValue } from '@shared/PDF-functions';
-import { Content } from 'pdfmake/interfaces';
-import i18n from 'i18next';
-import { PEFCorrectiveInvoice } from 'src/lib-public/types/pef-invoice-corrective.types';
-import { createPefTableHeader, getContentPEFTable } from '@shared/functions-pef';
 import FormatTyp, { Position } from '@shared/enums/common.enum';
-import { HeaderDefine } from '@shared/types/pdf-types';
+import i18n from 'i18next';
+import { Content } from 'pdfmake/interfaces';
+import { PEFCorrectiveInvoice } from 'src/lib-public/types/pef-invoice-corrective.types';
+import { createPefTableHeader, getContentPEFTable } from '../../../shared/functions-pef.js';
+import { getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
+import { HeaderDefine } from '../../../shared/types/pdf-types.js';
 import { getExtensionTwo, getUBLExtensionArray, PEFTable } from '../../types/pef.types';
 
 export function generateDiffSummary(invoice: PEFCorrectiveInvoice): Content[] {

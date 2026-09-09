@@ -1,19 +1,19 @@
+import i18n from 'i18next';
+import { Content } from 'pdfmake/interfaces';
+import { _ } from 'vitest/dist/chunks/reporters.d.BFLkQcL6';
+import { SectionType } from '../../../shared/enums/pef-invoice.enum.js';
 import {
   createPefTableHeader,
   displayValueOrDash,
   formatTextWithCurrency,
   generatePefTable,
   generateTaxRateLabel,
-} from '../../../shared/functions-pef';
-import { Content } from 'pdfmake/interfaces';
-import i18n from 'i18next';
-import { PEFBasicInvoice, TaxCategory } from '../../types/pef-invoice.types';
-import { getNumber, getTable, getText } from '../../../shared/PDF-functions';
+} from '../../../shared/functions-pef.js';
+import { getNumber, getTable, getText } from '../../../shared/PDF-functions.js';
 import { PEFCorrectiveInvoice, PEFInvoiceAllowanceCharge } from '../../types/pef-invoice-corrective.types';
-import { isPEFCorrective } from '../../types/typeguards';
-import { SectionType } from '../../../shared/enums/pef-invoice.enum';
+import { PEFBasicInvoice, TaxCategory } from '../../types/pef-invoice.types';
 import { getExtensionOne, getExtensionTwo, getUBLExtensionArray } from '../../types/pef.types';
-import { _ } from 'vitest/dist/chunks/reporters.d.BFLkQcL6';
+import { isPEFCorrective } from '../../types/typeguards';
 
 export function generateAllowanceCharge(
   invoice: PEFBasicInvoice | PEFCorrectiveInvoice,

@@ -1,7 +1,7 @@
-import { createPefTableHeader, getContentPEFTable } from '@shared/functions-pef';
-import { HeaderDefine } from '@shared/types/pdf-types';
-import { Content, ContentText } from 'pdfmake/interfaces';
 import { FormatTyp, Position } from '@shared/enums/common.enum';
+import { SectionType } from '@shared/enums/pef-invoice.enum';
+import i18n from 'i18next';
+import { Content, ContentText } from 'pdfmake/interfaces';
 import {
   AllowanceCharge,
   Amount,
@@ -9,8 +9,18 @@ import {
   InvoiceLine,
   PEFCorrectiveInvoice,
 } from 'src/lib-public/types/pef-invoice-corrective.types';
-import i18n from 'i18next';
-import { SectionType } from '@shared/enums/pef-invoice.enum';
+import { createPefTableHeader, getContentPEFTable } from '../../../shared/functions-pef.js';
+import {
+  createSection,
+  formatText,
+  getTable,
+  getText,
+  hasValue,
+  normalizeCurrencySeparator,
+} from '../../../shared/PDF-functions.js';
+import { HeaderDefine } from '../../../shared/types/pdf-types';
+import { PEFSpecInvoice } from '../../types/pef-invoice-spec.types';
+import { PEFBasicInvoice, PEFInvoiceInvoiceLine } from '../../types/pef-invoice.types';
 import {
   ColumnDef,
   getExtensionOne,
@@ -19,17 +29,7 @@ import {
   PEFTable,
   PEFTableCell,
 } from '../../types/pef.types';
-import {
-  createSection,
-  formatText,
-  getTable,
-  getText,
-  hasValue,
-  normalizeCurrencySeparator,
-} from '@shared/PDF-functions';
 import { isPEFBasic, isPEFCorrective } from '../../types/typeguards';
-import { PEFBasicInvoice, PEFInvoiceInvoiceLine } from '../../types/pef-invoice.types';
-import { PEFSpecInvoice } from '../../types/pef-invoice-spec.types';
 
 export function generateInvoiceLine(
   invoice: PEFCorrectiveInvoice | PEFSpecInvoice | PEFBasicInvoice,
@@ -44,6 +44,7 @@ export function generateInvoiceLine(
   if (sectionType === SectionType.BeforeCorrection && isPEFCorrective(invoice)) {
     const UBLExtensionArray = getUBLExtensionArray(invoice);
     const UBLExtensionCorrectiveData = getExtensionOne(UBLExtensionArray);
+
     data = getTable(UBLExtensionCorrectiveData?.OriginalInvoiceData?.InvoiceLine);
     sum = UBLExtensionCorrectiveData?.OriginalInvoiceData?.LegalMonetaryTotal?.LineExtensionAmount;
   }

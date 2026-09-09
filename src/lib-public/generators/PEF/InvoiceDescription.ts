@@ -1,18 +1,18 @@
-import { PEFType } from './../../types/pef.types';
-import FormatTyp from '@shared/enums/common.enum';
-import { formatText, generateColumns, getTable, getText, hasValue } from '@shared/PDF-functions';
+import i18n from 'i18next';
+import { Content, ContentStack, Style } from 'pdfmake/interfaces';
+import FormatTyp from '../../../shared/enums/common.enum.js';
 import {
   borderedBox,
   createInlineLabelValue,
   createLabelWithBoldText,
   createPEFSubHeader,
   createSmallInlineLabelValue,
-} from '@shared/functions-pef';
-import { Content, ContentStack, Style } from 'pdfmake/interfaces';
-import i18n from 'i18next';
-import { PEFBasicInvoice, PEFInvoiceBillingReference } from '../../types/pef-invoice.types';
+} from '../../../shared/functions-pef.js';
+import { formatText, generateColumns, getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
 import { PEFCorrectiveInvoice } from '../../types/pef-invoice-corrective.types';
+import { PEFBasicInvoice, PEFInvoiceBillingReference } from '../../types/pef-invoice.types';
 import { isPEFBasic } from '../../types/typeguards';
+import { PEFType } from './../../types/pef.types';
 
 export function generateInvoiceDescription(
   pefType: PEFType,

@@ -1,3 +1,7 @@
+import FormatTyp from '@shared/enums/common.enum';
+import i18n from 'i18next';
+import { Content, ContentQr } from 'pdfmake/interfaces';
+import { version } from '../../../../package.json';
 import {
   createHeader,
   createLabelText,
@@ -6,12 +10,8 @@ import {
   generateQRCode,
   getText,
   verticalSpacing,
-} from '@shared/PDF-functions';
-import { Content, ContentQr } from 'pdfmake/interfaces';
+} from '../../../shared/PDF-functions.js';
 import { AdditionalDataTypes } from '../../types/common.types';
-import i18n from 'i18next';
-import FormatTyp from '@shared/enums/common.enum';
-import { version } from '../../../../package.json';
 import { CustomizationID } from '../../types/pef-invoice.types';
 
 export function generateFooter(

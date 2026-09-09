@@ -1,11 +1,11 @@
-import { Content } from 'pdfmake/interfaces';
 import i18n from 'i18next';
+import { Content } from 'pdfmake/interfaces';
 
-import { createContact } from './shared/contact';
-import { generateColumns, getValue } from '@shared/PDF-functions';
-import { borderedBox, createPefHeader, createPEFSubHeader } from '@shared/functions-pef';
-import { createAddress } from './shared/address';
+import { generateColumns, getValue } from '../../../shared/PDF-functions.js';
+import { borderedBox, createPefHeader, createPEFSubHeader } from '../../../shared/functions-pef.js';
 import { ReceiverParty } from '../../types/pef-invoice-corrective.types';
+import { createAddress } from './shared/address.js';
+import { createContact } from './shared/contact.js';
 
 export function generateReceiverParty(receiverParty: ReceiverParty | undefined): Content[] {
   const result: Content[] = [];

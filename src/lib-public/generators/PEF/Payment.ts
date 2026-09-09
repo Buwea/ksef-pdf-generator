@@ -1,14 +1,14 @@
+import i18n from 'i18next';
+import { Content, TableCell } from 'pdfmake/interfaces';
+import { PEFCorrectiveInvoice } from 'src/lib-public/types/pef-invoice-corrective.types';
+import { PEFSpecInvoice } from 'src/lib-public/types/pef-invoice-spec.types';
 import {
   createInlineLabelValue,
   createPefTableHeader,
   displayValueOrDash,
-} from '../../../shared/functions-pef';
-import { Content, TableCell } from 'pdfmake/interfaces';
-import i18n from 'i18next';
-import { PEFBasicInvoice, PEFInvoicePaymentMean } from '../../types/pef-invoice.types';
+} from '../../../shared/functions-pef.js';
 import { getTable, getText, hasValue } from '../../../shared/PDF-functions';
-import { PEFCorrectiveInvoice } from 'src/lib-public/types/pef-invoice-corrective.types';
-import { PEFSpecInvoice } from 'src/lib-public/types/pef-invoice-spec.types';
+import { PEFBasicInvoice, PEFInvoicePaymentMean } from '../../types/pef-invoice.types';
 
 export function generatePayment(invoice: PEFBasicInvoice | PEFCorrectiveInvoice | PEFSpecInvoice): Content[] {
   const result: Content[] = [];
@@ -46,6 +46,7 @@ export function addPaymentMeansTable(paymentMeans: PEFInvoicePaymentMean): Conte
   const { PayeeFinancialAccount, CardAccount, PaymentMandate } = paymentMeans;
   const paymentMeansCodeName = paymentMeans?.PaymentMeansCode?._attributes?.name;
   const paymentMeansCodeDescription = paymentMeansCodeName ? `(${paymentMeansCodeName})` : '';
+
   if (
     hasValue(PayeeFinancialAccount?.FinancialInstitutionBranch?.ID) ||
     hasValue(PayeeFinancialAccount?.ID) ||
@@ -128,7 +129,9 @@ function createPaymentTable(table: TableCell[][]): Content {
     },
     layout: {
       hLineWidth: (i) => {
-        if (i === 0) return null;
+        if (i === 0) {
+          return null;
+        }
         if (i === 1) {
           return 1;
         } else {

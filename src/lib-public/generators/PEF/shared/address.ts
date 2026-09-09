@@ -1,7 +1,7 @@
-import { Content } from 'pdfmake';
 import i18n from 'i18next';
-import { createInlineLabelValue, createPEFSectionTitle } from '@shared/functions-pef';
-import { getTable, getText } from '@shared/PDF-functions';
+import { Content } from 'pdfmake';
+import { createInlineLabelValue, createPEFSectionTitle } from '../../../../shared/functions-pef.js';
+import { getTable, getText } from '../../../../shared/PDF-functions.js';
 import { PartyPostalAddress } from '../../../types/pef-invoice.types';
 
 export function createAddress(postalAddress?: PartyPostalAddress): Content[] {

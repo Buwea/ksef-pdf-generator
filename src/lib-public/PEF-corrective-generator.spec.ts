@@ -1,6 +1,6 @@
-import { beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
-import { generateCorrectivePEF } from './PEF-corrective-generator';
 import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake';
+import { beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
+import { generateCorrectivePEF } from './PEF-corrective-generator.js';
 import { AdditionalDataTypes } from './types/common.types';
 
 vi.mock('./generators/PEF/AccountingParty', () => ({

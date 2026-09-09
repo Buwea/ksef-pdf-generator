@@ -1,15 +1,15 @@
-import { getNumber, getTable, getText, hasValue } from '@shared/PDF-functions';
+import i18n from 'i18next';
+import { Content } from 'pdfmake/interfaces';
+import { Code } from 'src/lib-public/types/pef-invoice-corrective.types';
+import { getNumber, getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
 import {
   createPefTableHeader,
   displayValueOrDash,
   formatTextWithCurrency,
   generatePefTable,
   generateTaxRateLabel,
-} from '@shared/functions-pef';
-import { Content } from 'pdfmake/interfaces';
-import i18n from 'i18next';
+} from '../../../shared/functions-pef.js';
 import { PEFInvoiceTaxTotal, StickyTaxSubtotal } from '../../types/pef-invoice.types';
-import { Code } from 'src/lib-public/types/pef-invoice-corrective.types';
 
 export function generateTaxTotal(
   input?: PEFInvoiceTaxTotal[] | PEFInvoiceTaxTotal | undefined,

@@ -1,15 +1,15 @@
-import FormatTyp, { Position } from './enums/common.enum';
-import { formatText, getTable } from '../shared/PDF-functions';
-import { Content, ContentTable, ContentText, Margins, TableCell } from 'pdfmake/interfaces';
 import i18n from 'i18next';
-import { HeaderDefine, PdfOptionField } from './types/pdf-types';
+import { Content, ContentTable, ContentText, Margins, TableCell } from 'pdfmake/interfaces';
 import { CellStyle, PEFTable, PEFTableCell, PEFTextCell } from 'src/lib-public/types/pef.types';
+import { formatText, getTable } from '../shared/PDF-functions.js';
+import FormatTyp, { Position } from './enums/common.enum';
+import { HeaderDefine, PdfOptionField } from './types/pdf-types';
 
 export function formatTextWithCurrency(
   value: number | string | undefined | null,
   currency: string,
   multiplierFactorNumeric?: number | string,
-  emptyValue: string = ''
+  emptyValue = ''
 ): ContentText | string {
   if (value === undefined || value === null || value === '') {
     return emptyValue;

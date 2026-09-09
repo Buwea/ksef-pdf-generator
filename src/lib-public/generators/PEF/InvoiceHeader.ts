@@ -1,19 +1,19 @@
+import i18n from 'i18next';
+import { Content, ContentText, Style } from 'pdfmake/interfaces';
 import {
   formatText,
   generateColumns,
   getTable,
   getText,
   replaceDotWithCommaIfNeeded,
-} from '@shared/PDF-functions';
-import { borderedBox, createLabelWithBoldText } from '@shared/functions-pef';
-import { Content, ContentText, Style } from 'pdfmake/interfaces';
-import i18n from 'i18next';
-import FormatTyp, { Position } from '@shared/enums/common.enum';
-import { PEFBasicInvoice } from '../../types/pef-invoice.types';
+} from '../../../shared/PDF-functions.js';
+import FormatTyp, { Position } from '../../../shared/enums/common.enum.js';
+import { borderedBox, createLabelWithBoldText } from '../../../shared/functions-pef.js';
 import { Amount, PEFCorrectiveInvoice } from '../../types/pef-invoice-corrective.types';
-import { isPEFBasic, isPEFCorrective } from '../../types/typeguards';
 import { PEFSpecInvoice } from '../../types/pef-invoice-spec.types';
-import { getUBLExtensionArray, getExtensionTwo } from '../../types/pef.types';
+import { PEFBasicInvoice } from '../../types/pef-invoice.types';
+import { getExtensionTwo, getUBLExtensionArray } from '../../types/pef.types';
+import { isPEFBasic, isPEFCorrective } from '../../types/typeguards';
 
 export function generateInvoiceHeader(
   invoice: PEFBasicInvoice | PEFCorrectiveInvoice,

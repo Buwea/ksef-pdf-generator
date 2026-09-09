@@ -1,6 +1,6 @@
-import { beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
-import { generateSpecPEF } from './PEF-spec-generator';
 import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake';
+import { beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
+import { generateSpecPEF } from './PEF-spec-generator.js';
 import { AdditionalDataTypes } from './types/common.types';
 import { LegalMonetaryTotal, PEFBasicInvoice } from './types/pef-invoice.types';
 

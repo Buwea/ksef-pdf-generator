@@ -1,9 +1,9 @@
-import { createInlineLabelValue, createPEFSectionTitle } from '@shared/functions-pef';
-import { Content } from 'pdfmake';
 import i18n from 'i18next';
-import { Contact } from '../../../types/pef-invoice.types';
-import { getText, hasValue } from '@shared/PDF-functions';
+import { Content } from 'pdfmake';
 import { CustomizationID } from 'src/lib-public/types/pef-invoice-corrective.types';
+import { createInlineLabelValue, createPEFSectionTitle } from '../../../../shared/functions-pef.js';
+import { getText, hasValue } from '../../../../shared/PDF-functions.js';
+import { Contact } from '../../../types/pef-invoice.types';
 
 export function createContact(contact?: Contact, EndpointID?: CustomizationID): Content[] {
   if (!contact) {

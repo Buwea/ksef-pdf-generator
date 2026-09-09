@@ -1,10 +1,14 @@
-import { Content, ContentTable, TableCell } from 'pdfmake/interfaces';
 import i18n from 'i18next';
-import { formatText, getTable, hasValue } from '@shared/PDF-functions';
-import { createInlineLabelValue, createInlineValueLabel, createPefTableHeader } from '@shared/functions-pef';
-import FormatTyp, { Position } from '@shared/enums/common.enum';
-import UNECE_pl from './scheme/UNECE_pl.json';
+import { Content, ContentTable, TableCell } from 'pdfmake/interfaces';
+import { formatText, getTable, hasValue } from '../../../shared/PDF-functions.js';
+import FormatTyp, { Position } from '../../../shared/enums/common.enum.js';
+import {
+  createInlineLabelValue,
+  createInlineValueLabel,
+  createPefTableHeader,
+} from '../../../shared/functions-pef.js';
 import { PEFBasicInvoice, PEFInvoiceInvoiceLine } from '../../types/pef-invoice.types';
+import UNECE_pl from './scheme/UNECE_pl.json';
 
 export function generateInvoiceLine(invoice: PEFBasicInvoice): Content[] {
   const result: Content[] = [];

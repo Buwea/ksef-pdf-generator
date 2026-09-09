@@ -1,13 +1,13 @@
+import i18n from 'i18next';
+import { Content } from 'pdfmake/interfaces';
 import {
   borderedBox,
   createInlineLabelValue,
   createPefHeader,
   createPEFSubHeader,
-} from '@shared/functions-pef';
-import { Content } from 'pdfmake/interfaces';
+} from '../../../shared/functions-pef.js';
+import { getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
 import { EParty } from '../../types/pef-invoice.types';
-import i18n from 'i18next';
-import { getTable, getText, hasValue } from '@shared/PDF-functions';
 
 export function generatePayeeParty(payeeParty?: EParty): Content[] {
   const result: Content[] = [];
