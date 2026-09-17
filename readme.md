@@ -138,4 +138,4 @@ Biblioteka wspiera lokalizację, poprzez użycie biblioteki i18next. Pliki z tł
 
 ## Ważne!!!
 
-Dodano obsługę faktur PEF - nie jest jescze gotowa w użyciu produkcyjnym. Trwają testy.
+Dodano obsługę faktur PEF - W najbliższym wydaniu będą dostępne na produkcji.
