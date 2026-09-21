@@ -1,6 +1,6 @@
 {
   "name": "@buwea/ksef-pdf-generator",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "scripts": {
     "dev": "vite --mode public --config vite.config.ts",
     "build": "vite build --mode production",
@@ -15,15 +15,15 @@
     "test:ui": "vitest --ui",
     "test:ci": "vitest run --coverage"
   },
-  "main": "./dist/ksef-fe-invoice-converter.umd.cjs",
-  "module": "./dist/ksef-fe-invoice-converter.js",
+  "main": "./dist/ksef-pdf-generator.umd.cjs",
+  "module": "./dist/ksef-pdf-generator.js",
   "types": "./dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/ksef-fe-invoice-converter.js",
-      "require": "./dist/ksef-fe-invoice-converter.umd.cjs"
+      "import": "./dist/ksef-pdf-generator.js",
+      "require": "./dist/ksef-pdf-generator.umd.cjs"
     }
   },
   "files": [
