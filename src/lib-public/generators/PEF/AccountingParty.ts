@@ -11,8 +11,8 @@ import {
 } from '@shared/functions-pef';
 import { AccountingType } from 'src/lib-public/types/pef.types';
 import { Party, PartyPartyLegalEntity, PartyPartyTaxScheme } from '../../types/pef-invoice.types';
-import { createAddress } from './shared/address.js';
-import { createContact } from './shared/contact.js';
+import { createAddress } from './shared/address';
+import { createContact } from './shared/contact';
 
 export function generateAccountingParty(party: Party | undefined, type: AccountingType): Content[] {
   const result: Content[] = [];

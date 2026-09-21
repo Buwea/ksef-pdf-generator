@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { Content } from 'pdfmake/interfaces';
-import { Code } from 'src/lib-public/types/pef-invoice-corrective.types';
 import { getNumber, getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
 import {
   createPefTableHeader,
@@ -9,7 +8,7 @@ import {
   generatePefTable,
   generateTaxRateLabel,
 } from '../../../shared/functions-pef.js';
-import { PEFInvoiceTaxTotal, StickyTaxSubtotal } from '../../types/pef-invoice.types';
+import { Code, PEFInvoiceTaxTotal, StickyTaxSubtotal } from '../../types/pef-invoice.types';
 
 export function generateTaxTotal(
   input?: PEFInvoiceTaxTotal[] | PEFInvoiceTaxTotal | undefined,
@@ -47,7 +46,7 @@ export function generateTaxTotal(
         getText(subtotal.TaxCategory?.Percent)
       ),
       exemptionReason: hasValue(TaxExemptionReasonCode)
-        ? getText(TaxExemptionReason) + ' - ' + getText(TaxExemptionReasonCode)
+        ? `${getText(TaxExemptionReason)}${getText(TaxExemptionReason) ? ' - ' : ''}${getText(TaxExemptionReasonCode)}`
         : displayValueOrDash(getText(TaxExemptionReason)),
       taxableAmount: formatTextWithCurrency(
         getNumber(subtotal.TaxableAmount),

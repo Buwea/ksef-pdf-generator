@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 import { Content } from 'pdfmake/interfaces';
 
-import { generateColumns, getValue } from '../../../shared/PDF-functions.js';
 import { borderedBox, createPefHeader, createPEFSubHeader } from '../../../shared/functions-pef.js';
+import { generateColumns, getTable, getValue } from '../../../shared/PDF-functions.js';
 import { ReceiverParty } from '../../types/pef-invoice-corrective.types';
 import { createAddress } from './shared/address.js';
 import { createContact } from './shared/contact.js';
@@ -14,7 +14,7 @@ export function generateReceiverParty(receiverParty: ReceiverParty | undefined):
     const address: Content[] = [];
     const contact: Content[] = [];
     const { PostalAddress, PartyName, Contact } = receiverParty.Party;
-    const subHeader = getValue(PartyName?.Name)?.toString();
+    const subHeader = getValue(getTable(PartyName)?.[0]?.Name)?.toString();
 
     if (Contact) {
       contact.push(createContact({ ...Contact }));

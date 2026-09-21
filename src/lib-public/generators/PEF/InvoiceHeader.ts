@@ -266,7 +266,7 @@ function generateFourColumns(contents: Content[], style: Style | undefined = und
 
 function getPayableAmountValue(
   invoice: PEFCorrectiveInvoice | PEFBasicInvoice | PEFSpecInvoice
-): Amount | Amount | undefined {
+): Amount | undefined {
   if (isPEFCorrective(invoice)) {
     const UBLExtensionArray = getUBLExtensionArray(invoice);
     const UBLExtensionDiffValues = getExtensionTwo(UBLExtensionArray);
@@ -277,7 +277,7 @@ function getPayableAmountValue(
   }
 }
 
-function getPayableAmountLabel(payableAmount: Amount | Amount | undefined): string {
+function getPayableAmountLabel(payableAmount: Amount | undefined): string {
   if (!payableAmount) {
     return '';
   } else if (Number(payableAmount._text) >= 0) {

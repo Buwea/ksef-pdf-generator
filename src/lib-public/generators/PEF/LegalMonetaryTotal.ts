@@ -4,7 +4,12 @@ import i18n from 'i18next';
 import { Content } from 'pdfmake/interfaces';
 import { InvoiceLine, PEFCorrectiveInvoice } from 'src/lib-public/types/pef-invoice-corrective.types';
 import { getText, hasValue, normalizeCurrencySeparator } from '../../../shared/PDF-functions.js';
-import { Amount, LegalMonetaryTotal, PEFBasicInvoice } from '../../types/pef-invoice.types';
+import {
+  Amount,
+  LanguageLocaleIDEnum,
+  LegalMonetaryTotal,
+  PEFBasicInvoice,
+} from '../../types/pef-invoice.types';
 import {
   getExtensionOne,
   getExtensionThree,
@@ -31,9 +36,10 @@ export function generateLegalMonetaryTotal(
         return setTable(setLegalMonetaryTotal(legalMonetaryTotal), legalMonetaryTotal);
 
       case SectionType.AfterCorrection:
-        const accountingCosts = getAdditionalInvoiceGrossData(invoice);
-
-        return setTable(setLegalMonetaryTotal(legalMonetaryTotal, accountingCosts), legalMonetaryTotal);
+        return setTable(
+          setLegalMonetaryTotal(legalMonetaryTotal, getAdditionalInvoiceGrossData(invoice)),
+          legalMonetaryTotal
+        );
 
       case SectionType.Summary:
         return setTable(setLegalMonetaryTotal(legalMonetaryTotal), legalMonetaryTotal);
@@ -50,7 +56,7 @@ export function generateLegalMonetaryTotal(
 function setLegalMonetaryTotal(
   legalMonetaryTotal: LegalMonetaryTotal,
   additionalInvoiceGrossData?: InvoiceLine[]
-) {
+): { label: string; value: string; currency: LanguageLocaleIDEnum | undefined }[] {
   const rows = [];
 
   if (hasValue(legalMonetaryTotal.TaxExclusiveAmount)) {
@@ -157,12 +163,12 @@ function getAdditionalInvoiceGrossData(
   invoice: PEFBasicInvoice | PEFCorrectiveInvoice
 ): InvoiceLine[] | undefined {
   if (isPEFCorrective(invoice)) {
-    const allowedAccountingCost: string[] = ['Bilans', 'Faktury', 'Raty', 'Odsetki'];
+    const allowedAccountingCost = new Set(['Bilans', 'Faktury', 'Raty', 'Odsetki']);
     const UBLExtensionArray = getUBLExtensionArray(invoice);
     const UBLExtensionCorrectiveInvoiceGross = getExtensionThree(UBLExtensionArray);
     const invoiceLine = UBLExtensionCorrectiveInvoiceGross?.AdditionalInvoiceGrossData?.InvoiceLine;
 
-    return invoiceLine?.filter((x) => allowedAccountingCost.includes(x.AccountingCost?._text ?? ''));
+    return invoiceLine?.filter((x) => allowedAccountingCost.has(x.AccountingCost?._text ?? ''));
   }
 }
 

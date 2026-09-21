@@ -128,24 +128,23 @@ function createPaymentTable(table: TableCell[][]): Content {
       dontBreakRows: true,
     },
     layout: {
-      hLineWidth: (i) => {
+      hLineWidth: (i): number | null => {
         if (i === 0) {
           return null;
         }
         if (i === 1) {
           return 1;
-        } else {
-          return 0.75;
         }
+        return 0.75;
       },
-      fillColor: (i) => {
+      fillColor: (i): string | null => {
         if (i === 0) {
           return '#F2F2F2';
         }
         return null;
       },
       vLineWidth: () => 0,
-      hLineColor: (i) => {
+      hLineColor: (i): string => {
         if (i === 1) {
           return '#242424';
         } else {

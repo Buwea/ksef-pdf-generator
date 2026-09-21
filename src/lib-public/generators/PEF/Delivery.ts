@@ -1,12 +1,13 @@
+import FormatTyp from '@shared/enums/common.enum';
 import i18n from 'i18next';
-import { Content } from 'pdfmake/interfaces';
+import { Content, ContentText } from 'pdfmake/interfaces';
 import {
   borderedBox,
   createInlineLabelValue,
   createPefHeader,
   createPEFSubHeader,
 } from '../../../shared/functions-pef.js';
-import { getTable, getText, getValue, hasValue } from '../../../shared/PDF-functions.js';
+import { formatText, getTable, getText, getValue, hasValue } from '../../../shared/PDF-functions.js';
 import { PEFInvoiceDelivery } from '../../types/pef-invoice.types.js';
 import { createAddress } from './shared/address.js';
 
@@ -39,7 +40,7 @@ export function generateDelivery(deliveryArray: PEFInvoiceDelivery[]): Content[]
   if (hasValue(delivery.ActualDeliveryDate)) {
     borderedBoxContent.push(
       createInlineLabelValue(
-        getText(delivery.ActualDeliveryDate).split('-').reverse().join('.'),
+        `${(formatText(getText(delivery.ActualDeliveryDate), FormatTyp.Date) as ContentText).text}`,
         i18n.t('pef.delivery.actualDeliveryDate')
       )
     );
