@@ -1,12 +1,21 @@
-import { generateFA1 } from './FA1-generator.js';
-import { Faktura as Faktura1 } from './types/fa1.types';
-import { generateFA2 } from './FA2-generator.js';
-import { Faktura as Faktura2 } from './types/fa2.types';
-import { generateFA3 } from './FA3-generator.js';
-import { Faktura as Faktura3 } from './types/fa3.types';
-import { parseXML } from '../shared/XML-parser.js';
 import { TCreatedPdf } from 'pdfmake/build/pdfmake.js';
+import { parseXML } from '../shared/XML-parser.js';
+import { generateFA1 } from './FA1-generator.js';
+import { generateFA2 } from './FA2-generator.js';
+import { generateFA3 } from './FA3-generator.js';
+import { generateFARR } from './FARR-generator.js';
+import { i18nReady } from './i18n/i18n-init.js';
+import { generateBasicPEF } from './PEF-basic-generator.js';
+import { generateCorrectivePEF } from './PEF-corrective-generator.js';
+import { generateSpecPEF } from './PEF-spec-generator.js';
 import { AdditionalDataTypes } from './types/common.types';
+import { Faktura as Faktura1 } from './types/fa1.types';
+import { Faktura as Faktura2 } from './types/fa2.types';
+import { Faktura as Faktura3 } from './types/fa3.types';
+import { FaRR } from './types/FaRR.types';
+import { PEFCorrectiveInvoice } from './types/pef-invoice-corrective.types.js';
+import { PEFSpecInvoice } from './types/pef-invoice-spec.types.js';
+import { PEFBasicInvoice } from './types/pef-invoice.types.js';
 
 export async function generateInvoice(
   file: File,
@@ -24,35 +33,51 @@ export async function generateInvoice(
   formatType: FormatType = 'blob'
 ): Promise<FormatTypeResult> {
   const xml: unknown = await parseXML(file);
-  const wersja: any = (xml as any)?.Faktura?.Naglowek?.KodFormularza?._attributes?.kodSystemowy;
+
+  const wersjaFa: any = (xml as any)?.Faktura?.Naglowek?.KodFormularza?._attributes?.kodSystemowy;
+  const wersjaPef: any =
+    (xml as any)?.Invoice?.ProfileID?._text ?? (xml as any)?.CreditNote?.ProfileID?._text;
+
+  const wersja = wersjaFa ?? wersjaPef;
 
   let pdf: TCreatedPdf;
 
-  return new Promise((resolve): void => {
-    switch (wersja) {
-      case 'FA (1)':
-        pdf = generateFA1((xml as any).Faktura as Faktura1, additionalData);
-        break;
-      case 'FA (2)':
-        pdf = generateFA2((xml as any).Faktura as Faktura2, additionalData);
-        break;
-      case 'FA (3)':
-        pdf = generateFA3((xml as any).Faktura as Faktura3, additionalData);
-        break;
-    }
-    switch (formatType) {
-      case 'blob':
-        pdf.getBlob((blob: Blob): void => {
-          resolve(blob);
-        });
-        break;
-      case 'base64':
-      default:
-        pdf.getBase64((base64: string): void => {
-          resolve(base64);
-        });
-    }
-  });
+  await i18nReady;
+
+  switch (wersja) {
+    case 'FA (1)':
+      pdf = generateFA1((xml as any).Faktura as Faktura1, additionalData);
+      break;
+    case 'FA (2)':
+      pdf = generateFA2((xml as any).Faktura as Faktura2, additionalData);
+      break;
+    case 'FA (3)':
+      pdf = generateFA3((xml as any).Faktura as Faktura3, additionalData);
+      break;
+    case 'FA_RR (1)':
+    case 'FA_RR(1)':
+      pdf = generateFARR((xml as any).Faktura as FaRR, additionalData);
+      break;
+    case 'urn:fdc:peppol.eu:2017:poacc:billing:01:1.0':
+      pdf = generateBasicPEF((xml as any).Invoice as PEFBasicInvoice, additionalData);
+      break;
+    case 'urn:fdc:www.efaktura.gov.pl:ver2.0:corr_inv:ver4.0':
+      pdf = generateCorrectivePEF((xml as any).CreditNote as PEFCorrectiveInvoice, additionalData);
+      break;
+    case 'urn:fdc:www.efaktura.gov.pl:ver2.0:plinv:ver1.4':
+      pdf = generateSpecPEF((xml as any).Invoice as PEFSpecInvoice, additionalData);
+      break;
+    default:
+      throw new Error(`Unknown XML Version: ${wersja}`);
+  }
+
+  switch (formatType) {
+    case 'blob':
+      return pdf.getBlob();
+    case 'base64':
+    default:
+      return pdf.getBase64();
+  }
 }
 
 type FormatType = 'blob' | 'base64';
