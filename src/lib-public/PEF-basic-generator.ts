@@ -1,6 +1,6 @@
 import i18n from 'i18next';
-import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake.js';
+import pdfFonts from 'pdfmake/build/vfs_fonts.js';
 import { Content, TDocumentDefinitions } from 'pdfmake/interfaces';
 import { Position } from '../shared/enums/common.enum.js';
 import { SectionType } from '../shared/enums/pef-invoice.enum.js';
@@ -19,7 +19,7 @@ import { generateTaxRepresentativeParty } from './generators/PEF/TaxRepresentati
 import { generateTaxTotal } from './generators/PEF/TaxTotal.js';
 import { AdditionalDataTypes } from './types/common.types';
 import { PEFBasicInvoice } from './types/pef-invoice.types';
-import { PEFType } from './types/pef.types';
+import { PEFType } from './types/pef.types.js';
 
 pdfMake.addVirtualFileSystem(pdfFonts);
 

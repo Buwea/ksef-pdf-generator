@@ -1,18 +1,18 @@
 import i18n from 'i18next';
 import { Content } from 'pdfmake/interfaces';
 
-import { generateColumns, getTable, getText, hasValue } from '@shared/PDF-functions';
+import { AccountingType } from 'src/lib-public/types/pef.types.js';
 import {
   borderedBox,
   createInlineLabelValue,
   createPefHeader,
   createPEFSectionTitle,
   createPEFSubHeader,
-} from '@shared/functions-pef';
-import { AccountingType } from 'src/lib-public/types/pef.types';
+} from '../../../shared/functions-pef.js';
+import { generateColumns, getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
 import { Party, PartyPartyLegalEntity, PartyPartyTaxScheme } from '../../types/pef-invoice.types';
-import { createAddress } from './shared/address';
-import { createContact } from './shared/contact';
+import { createAddress } from './shared/address.js';
+import { createContact } from './shared/contact.js';
 
 export function generateAccountingParty(party: Party | undefined, type: AccountingType): Content[] {
   const result: Content[] = [];

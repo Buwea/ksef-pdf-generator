@@ -1,12 +1,12 @@
-import { HeaderDefine } from '@shared/types/pdf-types';
 import i18n from 'i18next';
 import { Content } from 'pdfmake/interfaces';
 import FormatTyp, { Position } from '../../../shared/enums/common.enum.js';
 import { createPefTableHeader, formatDateFromTo, getContentPEFTable } from '../../../shared/functions-pef.js';
 import { createSection, getTable, getText } from '../../../shared/PDF-functions.js';
+import { HeaderDefine } from '../../../shared/types/pdf-types.js';
 import { InvoiceLine, PEFCorrectiveInvoice } from '../../types/pef-invoice-corrective.types';
 import { PEFSpecInvoice } from '../../types/pef-invoice-spec.types';
-import { getExtensionThree, getUBLExtensionArray, PEFTable } from '../../types/pef.types';
+import { getExtensionThree, getUBLExtensionArray, PEFTable } from '../../types/pef.types.js';
 
 export function generateAccountReckoning(invoice: PEFCorrectiveInvoice | PEFSpecInvoice): Content[] {
   const result: Content[] = [];

@@ -7,7 +7,7 @@ import {
   createPefTableHeader,
   displayValueOrDash,
 } from '../../../shared/functions-pef.js';
-import { getTable, getText, hasValue } from '../../../shared/PDF-functions';
+import { getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
 import { PEFBasicInvoice, PEFInvoicePaymentMean } from '../../types/pef-invoice.types';
 
 export function generatePayment(invoice: PEFBasicInvoice | PEFCorrectiveInvoice | PEFSpecInvoice): Content[] {

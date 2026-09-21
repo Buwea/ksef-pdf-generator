@@ -1,8 +1,8 @@
-import { Position } from '@shared/enums/common.enum';
-import { SectionType } from '@shared/enums/pef-invoice.enum';
 import i18n from 'i18next';
 import { Content } from 'pdfmake/interfaces';
 import { InvoiceLine, PEFCorrectiveInvoice } from 'src/lib-public/types/pef-invoice-corrective.types';
+import { Position } from '../../../shared/enums/common.enum.js';
+import { SectionType } from '../../../shared/enums/pef-invoice.enum.js';
 import { getText, hasValue, normalizeCurrencySeparator } from '../../../shared/PDF-functions.js';
 import {
   Amount,
@@ -15,8 +15,8 @@ import {
   getExtensionThree,
   getExtensionTwo,
   getUBLExtensionArray,
-} from '../../types/pef.types';
-import { isPEFCorrective } from '../../types/typeguards';
+} from '../../types/pef.types.js';
+import { isPEFCorrective } from '../../types/typeguards.js';
 
 export function generateLegalMonetaryTotal(
   invoice: PEFBasicInvoice | PEFCorrectiveInvoice,

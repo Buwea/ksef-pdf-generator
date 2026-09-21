@@ -1,15 +1,15 @@
-import { generateStyle, getTable } from '@shared/PDF-functions';
-import { Position } from '@shared/enums/common.enum';
-import { SectionType } from '@shared/enums/pef-invoice.enum';
 import i18n from 'i18next';
-import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfMake, { TCreatedPdf } from 'pdfmake/build/pdfmake.js';
+import pdfFonts from 'pdfmake/build/vfs_fonts.js';
 import { Content, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { generateAccountReckoning } from './generators/PEF/AccountReckoning';
+import { generateStyle, getTable } from '../shared/PDF-functions.js';
+import { Position } from '../shared/enums/common.enum.js';
+import { SectionType } from '../shared/enums/pef-invoice.enum.js';
+import { generateAccountReckoning } from './generators/PEF/AccountReckoning.js';
 import { generateAccountingParty } from './generators/PEF/AccountingParty.js';
-import { generateAllowanceCharge } from './generators/PEF/AllowanceCharge';
+import { generateAllowanceCharge } from './generators/PEF/AllowanceCharge.js';
 import { generateDelivery } from './generators/PEF/Delivery.js';
-import { generateDiffSummary } from './generators/PEF/DiffSummary';
+import { generateDiffSummary } from './generators/PEF/DiffSummary.js';
 import { generateInvoiceDescription } from './generators/PEF/InvoiceDescription.js';
 import { generateInvoiceHeader } from './generators/PEF/InvoiceHeader.js';
 import { generateInvoiceLine } from './generators/PEF/InvoiceLine.js';
@@ -28,7 +28,7 @@ import {
   getExtensionTwo,
   getUBLExtensionArray,
   PEFType,
-} from './types/pef.types';
+} from './types/pef.types.js';
 
 pdfMake.addVirtualFileSystem(pdfFonts);
 

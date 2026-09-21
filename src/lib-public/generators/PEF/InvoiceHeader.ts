@@ -12,8 +12,8 @@ import { borderedBox, createLabelWithBoldText } from '../../../shared/functions-
 import { Amount, PEFCorrectiveInvoice } from '../../types/pef-invoice-corrective.types';
 import { PEFSpecInvoice } from '../../types/pef-invoice-spec.types';
 import { PEFBasicInvoice } from '../../types/pef-invoice.types';
-import { getExtensionTwo, getUBLExtensionArray } from '../../types/pef.types';
-import { isPEFBasic, isPEFCorrective } from '../../types/typeguards';
+import { getExtensionTwo, getUBLExtensionArray } from '../../types/pef.types.js';
+import { isPEFBasic, isPEFCorrective } from '../../types/typeguards.js';
 
 export function generateInvoiceHeader(
   invoice: PEFBasicInvoice | PEFCorrectiveInvoice,

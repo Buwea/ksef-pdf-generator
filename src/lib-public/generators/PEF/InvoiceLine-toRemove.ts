@@ -8,7 +8,7 @@ import {
   createPefTableHeader,
 } from '../../../shared/functions-pef.js';
 import { PEFBasicInvoice, PEFInvoiceInvoiceLine } from '../../types/pef-invoice.types';
-import UNECE_pl from './scheme/UNECE_pl.json';
+import UNECE_pl from './scheme/UNECE_pl.json' with { type: 'json' };
 
 export function generateInvoiceLine(invoice: PEFBasicInvoice): Content[] {
   const result: Content[] = [];

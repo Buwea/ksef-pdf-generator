@@ -12,8 +12,8 @@ import {
 import { getNumber, getTable, getText } from '../../../shared/PDF-functions.js';
 import { PEFCorrectiveInvoice, PEFInvoiceAllowanceCharge } from '../../types/pef-invoice-corrective.types';
 import { PEFBasicInvoice, TaxCategory } from '../../types/pef-invoice.types';
-import { getExtensionOne, getExtensionTwo, getUBLExtensionArray } from '../../types/pef.types';
-import { isPEFCorrective } from '../../types/typeguards';
+import { getExtensionOne, getExtensionTwo, getUBLExtensionArray } from '../../types/pef.types.js';
+import { isPEFCorrective } from '../../types/typeguards.js';
 
 export function generateAllowanceCharge(
   invoice: PEFBasicInvoice | PEFCorrectiveInvoice,

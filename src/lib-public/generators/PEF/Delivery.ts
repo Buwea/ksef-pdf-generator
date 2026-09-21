@@ -1,6 +1,6 @@
-import FormatTyp from '@shared/enums/common.enum';
 import i18n from 'i18next';
 import { Content, ContentText } from 'pdfmake/interfaces';
+import FormatTyp from '../../../shared/enums/common.enum.js';
 import {
   borderedBox,
   createInlineLabelValue,

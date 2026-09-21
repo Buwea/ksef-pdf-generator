@@ -1,7 +1,7 @@
-import FormatTyp from '@shared/enums/common.enum';
 import i18n from 'i18next';
 import { Content, ContentQr } from 'pdfmake/interfaces';
-import { version } from '../../../../package.json' with { type: 'json' };
+import packageJson from '../../../../package.json' with { type: 'json' };
+import FormatTyp from '../../../shared/enums/common.enum.js';
 import {
   createHeader,
   createLabelText,
@@ -40,7 +40,7 @@ export function generateFooter(
         {
           stack: createLabelText(
             i18n.t('invoice.footer.generatedIn'),
-            i18n.t('pef.stepper.generatorVersion', { version: version })
+            i18n.t('pef.stepper.generatorVersion', { version: packageJson.version })
           ),
           margin: [0, 8, 0, 0],
         },

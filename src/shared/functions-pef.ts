@@ -1,9 +1,9 @@
 import i18n from 'i18next';
 import { Content, ContentTable, ContentText, Margins, TableCell } from 'pdfmake/interfaces';
-import { CellStyle, PEFTable, PEFTableCell, PEFTextCell } from 'src/lib-public/types/pef.types';
-import UNECE_pl from '../lib-public/generators/PEF/scheme/UNECE_pl.json';
+import { CellStyle, PEFTable, PEFTableCell, PEFTextCell } from 'src/lib-public/types/pef.types.js';
+import UNECE_pl from '../lib-public/generators/PEF/scheme/UNECE_pl.json' with { type: 'json' };
 import { formatText, getTable } from '../shared/PDF-functions.js';
-import FormatTyp, { Position } from './enums/common.enum';
+import FormatTyp, { Position } from './enums/common.enum.js';
 import { HeaderDefine, PdfOptionField } from './types/pdf-types';
 
 export function formatTextWithCurrency(

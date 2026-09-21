@@ -1,14 +1,14 @@
-import FormatTyp from '@shared/enums/common.enum';
+import FormatTyp from '../../shared/enums/common.enum.js';
+import { SectionType } from '../../shared/enums/pef-invoice.enum.js';
+import { getTable } from '../../shared/PDF-functions.js';
 import {
   ExtensionContent,
   InvoiceLine,
   PEFCorrectiveInvoice,
   UBLExtension,
 } from './pef-invoice-corrective.types';
-import { getTable } from '@shared/PDF-functions';
 import { PEFSpecInvoice } from './pef-invoice-spec.types';
 import { PEFBasicInvoice } from './pef-invoice.types';
-import { SectionType } from '@shared/enums/pef-invoice.enum';
 
 export enum PEFType {
   Basic = 1, // Basic

@@ -11,8 +11,8 @@ import {
 import { formatText, generateColumns, getTable, getText, hasValue } from '../../../shared/PDF-functions.js';
 import { PEFCorrectiveInvoice } from '../../types/pef-invoice-corrective.types';
 import { PEFBasicInvoice, PEFInvoiceBillingReference } from '../../types/pef-invoice.types';
-import { isPEFBasic } from '../../types/typeguards';
-import { PEFType } from './../../types/pef.types';
+import { isPEFBasic } from '../../types/typeguards.js';
+import { PEFType } from './../../types/pef.types.js';
 
 export function generateInvoiceDescription(
   pefType: PEFType,

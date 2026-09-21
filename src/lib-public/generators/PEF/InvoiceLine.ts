@@ -1,4 +1,3 @@
-import { FormatTyp, Position } from '@shared/enums/common.enum';
 import i18n from 'i18next';
 import { Content, ContentText } from 'pdfmake/interfaces';
 import {
@@ -8,7 +7,8 @@ import {
   InvoiceLine,
   PEFCorrectiveInvoice,
 } from 'src/lib-public/types/pef-invoice-corrective.types';
-import { SectionType } from '../../../shared/enums/pef-invoice.enum';
+import { FormatTyp, Position } from '../../../shared/enums/common.enum.js';
+import { SectionType } from '../../../shared/enums/pef-invoice.enum.js';
 import { createPefTableHeader, getContentPEFTable, getNameByCode } from '../../../shared/functions-pef.js';
 import {
   createSection,
@@ -28,8 +28,8 @@ import {
   getUBLExtensionArray,
   PEFTable,
   PEFTableCell,
-} from '../../types/pef.types';
-import { isPEFBasic, isPEFCorrective } from '../../types/typeguards';
+} from '../../types/pef.types.js';
+import { isPEFBasic, isPEFCorrective } from '../../types/typeguards.js';
 
 export function generateInvoiceLine(
   invoice: PEFCorrectiveInvoice | PEFSpecInvoice | PEFBasicInvoice,
